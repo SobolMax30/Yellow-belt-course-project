@@ -1,9 +1,10 @@
 #pragma once
 
 #include "node.h"
+#include "comparison.h"
 
-#include <memory>
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
