@@ -4,13 +4,11 @@
 #include "node.h"
 #include "test_runner.h"
 
-#include <iostream>
-#include <stdexcept>
-
 using namespace std;
 
 string ParseEvent(istream& is) {
     string event;
+
     while (is.peek() == ' ') {
         is.get();
     }

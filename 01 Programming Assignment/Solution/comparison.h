@@ -15,5 +15,3 @@ enum class LogicalOperation {
     Or,
     And,
 };
-
-bool Compare(const Date& left, Comparison cmp, const Date& right);

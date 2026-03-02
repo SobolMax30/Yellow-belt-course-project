@@ -1,6 +1,8 @@
 #include "condition_parser.h"
 #include "token.h"
 
+#include <map>
+
 using namespace std;
 
 template <class It> shared_ptr<Node> ParseComparison(It& current, It end) {

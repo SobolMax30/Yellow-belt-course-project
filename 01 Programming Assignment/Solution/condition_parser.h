@@ -1,7 +1,6 @@
 #pragma once
 
 #include "node.h"
-#include "comparison.h"
 
 #include <iostream>
 #include <memory>

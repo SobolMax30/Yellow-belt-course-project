@@ -1,22 +1,31 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
+#include <tuple>
 
 using namespace std;
 
-struct Date {
+class Date {
+private:
     int year;
     int month;
     int day;
+public:
+    Date();
+    Date(int new_year, int new_month, int new_day);
 
-    bool operator<(const Date& other) const;
-    bool operator<=(const Date& other) const;
-    bool operator>(const Date& other) const;
-    bool operator>=(const Date& other) const;
-    bool operator==(const Date& other) const;
-    bool operator!=(const Date& other) const;
+    int GetYear() const;
+    int GetMonth() const;
+    int GetDay() const;
 };
 
-ostream& operator<<(ostream& os, const Date& date);
-
 Date ParseDate(istream& is);
+
+ostream& operator<<(ostream& os, const Date& date);
+bool operator<(const Date& lhs, const Date& rhs);
+bool operator<=(const Date& lhs, const Date& rhs);
+bool operator>(const Date& lhs, const Date& rhs);
+bool operator>=(const Date& lhs, const Date& rhs);
+bool operator==(const Date& lhs, const Date& rhs);
+bool operator!=(const Date& lhs, const Date& rhs);

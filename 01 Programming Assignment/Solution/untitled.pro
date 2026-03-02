@@ -19,7 +19,6 @@ QMAKE_CXXFLAGS += -m64
 QMAKE_CXXFLAGS += --sysroot=/
 
 SOURCES += \
-    comparison.cpp \
     condition_parser.cpp \
     condition_parser_test.cpp \
     database.cpp \
@@ -30,7 +29,6 @@ SOURCES += \
     token.cpp
 
 HEADERS += \ \
-    comparison.h \
     condition_parser.h \
     database.h \
     date.h \

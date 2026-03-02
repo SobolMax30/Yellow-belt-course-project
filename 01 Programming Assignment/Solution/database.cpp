@@ -1,5 +1,7 @@
 #include "database.h"
 
+using namespace std;
+
 void Database::Add(const Date& date, const string& event) {
     storage[date].push_back(event);
 }
@@ -12,7 +14,3 @@ void Database::Print(ostream& os) const {
     }
 }
 
-template <typename Predicate>
-int Database::RemoveIf(Predicate pred) {
-
-}
