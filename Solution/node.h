@@ -41,6 +41,7 @@ bool Compare(const T& left, const Comparison& comparison, const T& right) {
 class Node {
 public:
     virtual bool Evaluate(const Date& date, const std::string& event) const = 0;
+    virtual ~Node() = default;
 };
 
 class EmptyNode : public Node {

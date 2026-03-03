@@ -20,13 +20,13 @@ QMAKE_CXXFLAGS += --sysroot=/
 
 SOURCES += \
     condition_parser.cpp \
-    condition_parser_test.cpp \
     database.cpp \
     date.cpp \
     main.cpp \
     node.cpp \
     test_runner.cpp \
-    token.cpp
+    token.cpp \
+    unit_tests.cpp
 
 HEADERS += \ \
     condition_parser.h \

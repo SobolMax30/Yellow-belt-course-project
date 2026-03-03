@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <memory>
+#include <map>
 
 std::shared_ptr<Node> ParseCondition(std::istream& is);
-
-void TestParseCondition();

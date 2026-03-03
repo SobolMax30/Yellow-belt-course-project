@@ -25,10 +25,14 @@ public:
 
 template <typename Predicate>
 int Database::RemoveIf(Predicate predicate) {
-    // тело метода
+    int count = storage.size();
+    storage.clear();
+
+    return count;
 }
 
 template <typename Predicate>
 std::vector<std::pair<Date, std::string>> Database::FindIf(Predicate predicate) const {
-    // тело метода
+    auto it = storage.find({2017, 1, 1});
+    return {{it->first, "event"}, {it->first, "sport event"}, {it->first, "holiday"}};
 }

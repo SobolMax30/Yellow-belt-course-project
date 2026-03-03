@@ -3,7 +3,20 @@
 using namespace std;
 
 void Database::Add(const Date& date, const string& event) {
-    storage[date].push_back(event);
+    vector<string>& events = storage[date];
+
+    bool event_exists = false;
+
+    for (const string& existing_event : events) {
+        if (existing_event == event) {
+            event_exists = true;
+            break;
+        }
+    }
+
+    if (!event_exists) {
+        events.push_back(event);
+    }
 }
 
 void Database::Print(ostream& os) const {
@@ -15,5 +28,5 @@ void Database::Print(ostream& os) const {
 }
 
 string Database::Last(const Date& date) const {
-    // тело метода
+    return "asdads";
 }

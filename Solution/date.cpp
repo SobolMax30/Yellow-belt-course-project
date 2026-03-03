@@ -5,13 +5,13 @@ using namespace std;
 Date::Date() : year(0), month(0), day(0) {}
 Date::Date(int new_year, int new_month, int new_day) {
     if (new_month > 12 || new_month < 1) {
-        throw logic_error("Month value is invalid " + to_string(new_month));
+        throw logic_error("Month value is invalid: " + to_string(new_month));
     } else {
         month = new_month;
     }
 
     if (new_day > 31 || new_day < 1) {
-        throw logic_error("Day value is invalid " + to_string(new_day));
+        throw logic_error("Day value is invalid: " + to_string(new_day));
     } else {
         day = new_day;
     }
@@ -32,15 +32,35 @@ int Date::GetDay() const {
 }
 
 Date ParseDate(istream& is) {
-    int year, month, day;
+    string date_str;
+    is >> date_str;
 
-    is >> year;
-    is.ignore(1);
-    is >> month;
-    is.ignore(1);
-    is >> day;
+    stringstream stream(date_str);
 
-    return Date{year, month, day};
+    int year = -1;
+    stream >> year;
+
+    if (stream.fail() || stream.peek() != '-') {
+        throw logic_error("Wrong date format: " + date_str);
+    }
+    stream.ignore();
+
+    int month = -1;
+    stream >> month;
+
+    if (stream.fail() || stream.peek() != '-') {
+        throw logic_error("Wrong date format: " + date_str);
+    }
+    stream.ignore();
+
+    int day = -1;
+    stream >> day;
+
+    if (stream.fail() || !stream.eof()) {
+        throw logic_error("Wrong date format: " + date_str);
+    }
+
+    return Date(year, month, day);
 }
 
 ostream& operator<<(ostream& os, const Date& date) {

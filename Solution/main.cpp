@@ -6,6 +6,12 @@
 
 using namespace std;
 
+// ------------------------
+void TestParseDate();
+void TestParseEvent();
+void TestParseCondition();
+// ------------------------
+
 string ParseEvent(istream& is) {
     string event;
 
@@ -72,24 +78,24 @@ int main() {
 void TestParseEvent() {
     {
         istringstream is("event");
-        ASSERT_EQUAL(ParseEvent(is), "event");
+        AssertEqual(ParseEvent(is), "event", "Parse event without leading spaces");
     }
     {
         istringstream is("   sport event ");
-        ASSERT_EQUAL(ParseEvent(is), "sport event ");
+        AssertEqual(ParseEvent(is), "sport event ", "Parse event with leading spaces");
     }
     {
         istringstream is("  first event  \n  second event");
         vector<string> events;
         events.push_back(ParseEvent(is));
         events.push_back(ParseEvent(is));
-        vector<string> expected = {"first event  ", "second event"};
-        ASSERT_EQUAL(events, expected);
+        AssertEqual(events, vector<string>{"first event  ", "second event"}, "Parse multiple events");
     }
 }
 
 void TestAll() {
     TestRunner tr;
-    RUN_TEST(tr, TestParseEvent);
-    RUN_TEST(tr, TestParseCondition);
+    tr.RunTest(TestParseDate, "TestParseDate");
+    tr.RunTest(TestParseEvent, "TestParseEvent");
+    tr.RunTest(TestParseCondition, "TestParseCondition");
 }
