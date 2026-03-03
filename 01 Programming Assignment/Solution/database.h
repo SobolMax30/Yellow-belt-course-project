@@ -6,21 +6,29 @@
 #include <vector>
 #include <map>
 
-using namespace std;
-
 class Database {
 private:
-    map<Date, vector<string>> storage;
+    std::map<Date, std::vector<std::string>> storage;
 public:
-    void Add(const Date& date, const string& event);
+    void Add(const Date& date, const std::string& event);
 
-    void Print(ostream& os) const;
+    void Print(std::ostream& os) const;
 
     template <typename Predicate>
     int RemoveIf(Predicate predicate);
 
     template <typename Predicate>
-    vector<string> FindIf(Predicate predicate) const;
+    std::vector<std::pair<Date, std::string>> FindIf(Predicate predicate) const;
 
-    string Last(const Date& date) const;
+    std::string Last(const Date& date) const;
 };
+
+template <typename Predicate>
+int Database::RemoveIf(Predicate predicate) {
+    // тело метода
+}
+
+template <typename Predicate>
+std::vector<std::pair<Date, std::string>> Database::FindIf(Predicate predicate) const {
+    // тело метода
+}

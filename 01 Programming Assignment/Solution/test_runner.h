@@ -6,30 +6,28 @@
 #include <map>
 #include <set>
 
-using namespace std;
-
 // Interface
 
 template <class K, class V>
-ostream& operator<<(ostream& out, const map<K, V>& m);
+std::ostream& operator<<(std::ostream& out, const std::map<K, V>& m);
 
 template <class T>
-ostream& operator<<(ostream& out, const set<T>& s);
+std::ostream& operator<<(std::ostream& out, const std::set<T>& s);
 
 template <class T>
-ostream& operator<<(ostream& out, const vector<T>& s);
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& s);
 
 template <class T, class U>
-void AssertEqual(const T& t, const U& u, const string& hint);
+void AssertEqual(const T& t, const U& u, const std::string& hint);
 
-void Assert(bool b, const string& hint);
+void Assert(bool b, const std::string& hint);
 
 class TestRunner {
 private:
     int fail_count = 0;
 public:
     template <class TestFunc>
-    void RunTest(TestFunc func, const string& test_name);
+    void RunTest(TestFunc func, const std::string& test_name);
 
     ~TestRunner();
 };
@@ -37,7 +35,7 @@ public:
 // Implemetation
 
 template <class K, class V>
-ostream& operator<<(ostream& out, const map<K, V>& m) {
+std::ostream& operator<<(std::ostream& out, const std::map<K, V>& m) {
     out << "{";
     bool first = true;
 
@@ -53,7 +51,7 @@ ostream& operator<<(ostream& out, const map<K, V>& m) {
 }
 
 template <class T>
-ostream& operator<<(ostream& out, const set<T>& s) {
+std::ostream& operator<<(std::ostream& out, const std::set<T>& s) {
     out << "{";
     bool first = true;
 
@@ -69,7 +67,7 @@ ostream& operator<<(ostream& out, const set<T>& s) {
 }
 
 template <class T>
-ostream& operator<<(ostream& out, const vector<T>& v) {
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
     out << "{";
     bool first = true;
 
@@ -86,23 +84,23 @@ ostream& operator<<(ostream& out, const vector<T>& v) {
 
 
 template <class T, class U>
-void AssertEqual(const T& t, const U& u, const string& hint) {
+void AssertEqual(const T& t, const U& u, const std::string& hint) {
     if (t != u) {
-        ostringstream os;
+        std::ostringstream os;
         os << "Assertion failed: " << t << " != " << u << " Hint: " << hint;
 
-        throw runtime_error(os.str());
+        throw std::runtime_error(os.str());
     }
 }
 
 template <class TestFunc>
-void TestRunner::RunTest(TestFunc func, const string& test_name) {
+void TestRunner::RunTest(TestFunc func, const std::string& test_name) {
     try {
         func();
-        cerr << test_name << " OK" << endl;
-    } catch (runtime_error& e) {
+        std::cerr << test_name << " OK" << std::endl;
+    } catch (std::runtime_error& e) {
         ++fail_count;
-        cerr << test_name << " fail: " << e.what() << endl;
+        std::cerr << test_name << " fail: " << e.what() << std::endl;
     }
 }
 

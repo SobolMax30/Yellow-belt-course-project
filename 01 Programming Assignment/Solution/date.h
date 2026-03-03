@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <tuple>
 
-using namespace std;
-
 class Date {
 private:
     int year;
@@ -20,9 +18,10 @@ public:
     int GetDay() const;
 };
 
-Date ParseDate(istream& is);
+Date ParseDate(std::istream& is);
 
-ostream& operator<<(ostream& os, const Date& date);
+std::ostream& operator<<(std::ostream& os, const Date& date);
+std::ostream& operator<<(std::ostream& os, const std::pair<Date, std::string>& date_event);
 bool operator<(const Date& lhs, const Date& rhs);
 bool operator<=(const Date& lhs, const Date& rhs);
 bool operator>(const Date& lhs, const Date& rhs);

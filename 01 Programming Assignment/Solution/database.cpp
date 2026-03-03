@@ -14,3 +14,6 @@ void Database::Print(ostream& os) const {
     }
 }
 
+string Database::Last(const Date& date) const {
+    // тело метода
+}

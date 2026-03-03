@@ -51,6 +51,12 @@ ostream& operator<<(ostream& os, const Date& date) {
     return os;
 }
 
+ostream& operator<<(ostream& os, const pair<Date, string>& date_event) {
+    os << date_event.first << " " << date_event.second;
+
+    return os;
+}
+
 bool operator<(const Date& lhs, const Date& rhs) {
     return make_tuple(lhs.GetYear(), lhs.GetMonth(), lhs.GetDay()) < make_tuple(rhs.GetYear(), rhs.GetMonth(), rhs.GetDay());
 }
