@@ -31,15 +31,13 @@ string Database::Last(const Date& date) const {
     auto it = storage.upper_bound(date);
 
     if (it == storage.begin()) {
-        return "No entries";
+        throw invalid_argument("No entries");
     }
 
     (--it);
 
-    const string& last_event = it->second.back();
-
     ostringstream os;
-    os << it->first << " " << last_event;
+    os << it->first << " " << it->second.back();
 
     return os.str();
 }

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <string>
 #include <vector>
 #include <map>
 
@@ -26,11 +27,13 @@ public:
 
 template <typename Predicate>
 int Database::RemoveIf(Predicate predicate) {
-    return 0;
+    int count = 0;
+
+    return count;
 }
 
 template <typename Predicate>
 std::vector<std::pair<Date, std::string>> Database::FindIf(Predicate predicate) const {
-    auto it = storage.find({2017, 1, 1});
-    return {{it->first, "event"}, {it->first, "sport event"}, {it->first, "holiday"}};
+    auto it = storage.begin();
+    return {{it->first, it->second.back()}};
 }

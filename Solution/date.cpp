@@ -2,7 +2,6 @@
 
 using namespace std;
 
-Date::Date() : year(0), month(0), day(0) {}
 Date::Date(int new_year, int new_month, int new_day) {
     if (new_month > 12 || new_month < 1) {
         throw logic_error("Month value is invalid: " + to_string(new_month));

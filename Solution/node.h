@@ -3,6 +3,7 @@
 #include "date.h"
 
 #include <memory>
+#include <functional>
 
 enum class Comparison {
     Less,
@@ -10,71 +11,45 @@ enum class Comparison {
     Greater,
     GreaterOrEqual,
     Equal,
-    NotEqual,
+    NotEqual
 };
 
 enum class LogicalOperation {
     Or,
-    And,
+    And
 };
-
-template <typename T>
-bool Compare(const T& left, const Comparison& comparison, const T& right) {
-    switch (comparison) {
-        case Comparison::Less:
-            return left < right;
-        case Comparison::LessOrEqual:
-            return left <= right;
-        case Comparison::Greater:
-            return left > right;
-        case Comparison::GreaterOrEqual:
-            return left >= right;
-        case Comparison::Equal:
-            return left == right;
-        case Comparison::NotEqual:
-            return left != right;
-        default:
-            return false;
-    }
-}
 
 class Node {
 public:
     virtual bool Evaluate(const Date& date, const std::string& event) const = 0;
-    virtual ~Node() = default;
 };
 
 class EmptyNode : public Node {
 public:
-    EmptyNode();
     bool Evaluate(const Date& date, const std::string& event) const override;
 };
 
 class DateComparisonNode : public Node {
-private:
-    Comparison comparison_;
+    Comparison cmp_;
     Date date_;
 public:
-    DateComparisonNode(const Comparison& comparison, const Date& date);
-    bool Evaluate(const Date& date, const std::string& event) const override;
+    DateComparisonNode(Comparison cmp, Date date) : cmp_(cmp), date_(date) {}
+    bool Evaluate(const Date& date, const std::string&) const override;
 };
 
-
 class EventComparisonNode : public Node {
-private:
-    Comparison comparison_;
+    Comparison cmp_;
     std::string event_;
 public:
-    EventComparisonNode(const Comparison& comparison, const std::string& event);
-    bool Evaluate(const Date& date, const std::string& event) const override;
+    EventComparisonNode(Comparison cmp, std::string event) : cmp_(cmp), event_(event) {}
+    bool Evaluate(const Date&, const std::string& event) const override;
 };
 
 class LogicalOperationNode : public Node {
-private:
-    LogicalOperation logical_operation_;
-    std::shared_ptr<Node> left_node_, right_node_;
+    LogicalOperation op_;
+    std::shared_ptr<Node> left_, right_;
 public:
-    LogicalOperationNode(const LogicalOperation& logical_operation, const std::shared_ptr<Node>& left_node, const std::shared_ptr<Node>& right_node);
+    LogicalOperationNode(LogicalOperation op, std::shared_ptr<Node> left, std::shared_ptr<Node> right)
+        : op_(op), left_(left), right_(right) {}
     bool Evaluate(const Date& date, const std::string& event) const override;
 };
-

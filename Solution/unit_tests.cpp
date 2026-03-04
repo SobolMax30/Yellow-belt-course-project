@@ -17,7 +17,7 @@ void TestParseDate() {
         try {
             istringstream is("--11-07");
             ParseDate(is);
-        } catch (const logic_error& err) {
+        } catch (logic_error& err) {
             AssertEqual(string(err.what()), "Wrong date format: --11-07", "Parse Date --11-07");
         }
     }
@@ -25,7 +25,7 @@ void TestParseDate() {
         try {
             istringstream is("1900---07");
             ParseDate(is);
-        } catch (const logic_error& err) {
+        } catch (logic_error& err) {
             AssertEqual(string(err.what()), "Wrong date format: 1900---07", "Parse Date 1900---07");
         }
     }
@@ -33,7 +33,7 @@ void TestParseDate() {
         try {
             istringstream is("1900-10--");
             ParseDate(is);
-        } catch (const logic_error& err) {
+        } catch (logic_error& err) {
             AssertEqual(string(err.what()), "Wrong date format: 1900-10--", "Parse Date 1900-10--");
         }
     }
@@ -41,7 +41,7 @@ void TestParseDate() {
         istringstream is("1900-13-1");
         try {
             ParseDate(is);
-        } catch (const logic_error& err) {
+        } catch (logic_error& err) {
             AssertEqual(string(err.what()), "Month value is invalid: 13", "Invalid month value");
         }
     }
@@ -49,7 +49,7 @@ void TestParseDate() {
         istringstream is("1900-12-35");
         try {
             ParseDate(is);
-        } catch (const logic_error& err) {
+        } catch (logic_error& err) {
             AssertEqual(string(err.what()), "Day value is invalid: 35", "Invalid day value");
         }
     }
