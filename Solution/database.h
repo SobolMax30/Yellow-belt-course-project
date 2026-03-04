@@ -3,6 +3,7 @@
 #include "date.h"
 
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <map>
 
@@ -25,10 +26,7 @@ public:
 
 template <typename Predicate>
 int Database::RemoveIf(Predicate predicate) {
-    int count = storage.size();
-    storage.clear();
-
-    return count;
+    return 0;
 }
 
 template <typename Predicate>

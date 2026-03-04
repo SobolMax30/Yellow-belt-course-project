@@ -28,5 +28,18 @@ void Database::Print(ostream& os) const {
 }
 
 string Database::Last(const Date& date) const {
-    return "asdads";
+    auto it = storage.upper_bound(date);
+
+    if (it == storage.begin()) {
+        return "No entries";
+    }
+
+    (--it);
+
+    const string& last_event = it->second.back();
+
+    ostringstream os;
+    os << it->first << " " << last_event;
+
+    return os.str();
 }
