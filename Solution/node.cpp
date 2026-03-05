@@ -15,7 +15,7 @@ bool Compare(const T& left, Comparison cmp, const T& right) {
     }
 }
 
-bool EmptyNode::Evaluate(const Date& date, const std::string& event) const {
+bool EmptyNode::Evaluate(const Date&, const std::string&) const {
     return true;
 }
 
